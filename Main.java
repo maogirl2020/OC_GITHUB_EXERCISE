@@ -63,20 +63,9 @@ public class Main {
 
 
 
-        //Open HCP Browser
-        WebDriver driver2 = HCPBrowser.OpenBrowser(hcpBrowser, hcpIP);
-        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-        driver2.get(URL);
-
-
-
         //Maximize browser page (100%)
         driver.manage().window().maximize();
 
-
-        //Maximize browser page (100%)
-        driver2.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 
         //Nouvelle page de login : Connexion d'un Master
 
@@ -85,25 +74,12 @@ public class Main {
         //Retrive Session Key
         sessionKey1 = sessionKey.SessionKey(driver);
 
-        //Connect HCP
-        hcpLogin.HCPLogin(driver2, sessionKey1,masterName);
-
-
-
-
-        //HCP opens legal notice
-        //Master controls that HCP opens legal notice
-        openMlAct.OpenMLACT(driver, driver2, mentions);
 
         //Master logs out from application
         logout.LogoutMaster(driver);
 
-        driver2.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-
         //Close Browser and quit
         closeBrowser.CloseWebDriver(driver);
-        //For Firefox
-        driver2.close();
 
 
     }
